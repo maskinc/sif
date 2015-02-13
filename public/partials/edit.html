@@ -1,0 +1,231 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/#/home">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="/#/home">Reports</a></li>
+            <li><a href="/#/home">Analytics</a></li>
+            <li><a href="/#/home">Export</a></li>
+          </ul>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <form  class="form-horizontal" role="form" method="post" >   
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Supplier Site Information for <b>{{sif.supplier_name}}</b></div>
+        <div class="panel-body">
+            <div class="form-group">
+              <label for="supplierSiteName" class="col-sm-2 reqd control-label" >Site Name</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control"  placeholder="Site Name" ng-model="sif.supplierSiteName">
+              </div>
+              <label for="taxID" class="col-sm-2 control-label"></label>
+              <div class="col-sm-3">
+                <input type="checkbox" ng-model="sif.rivermine">Rivermine
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="DistrSetName" class="col-sm-2 control-label">Distribution Set Name</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" placeholder="Distribution Set Name" ng-model="sif.DistrSetName" >
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Tax Information</div>
+          <div class="panel-body">
+
+            <div class="form-group">
+              <label for="WithholdingTax" class="col-sm-2 reqd control-label " >Withholding Tax</label>
+              <div class="col-sm-3">
+                <input type="checkbox" ng-checked="false" ng-model="sif.WithholdingTax">Yes
+              </div>
+
+              <div ng-show="sif.WithholdingTax">
+                <label for="TaxGroup" class="col-sm-2 control-label">WithholdingLevel</label>
+                <div class="col-sm-3">
+                   <select   class="form-control" name="supplierType" ng-model="sif.WithholdingType">
+                      <option>Invoice Validation</option>
+                      <option>Payment</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="form-group">
+              <label for="WithholdingTax" class="col-sm-2 reqd control-label " >Tax Reporting Name</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control"  placeholder="Tax Name"   ng-model="sif.taxReportingName">
+              </div>
+
+
+                <label for="OrgType" class="col-sm-2 control-label">Org Type</label>
+                <div class="col-sm-3">
+                   <input type="text" class="form-control"  placeholder="Org Type"   ng-model="sif.orgType">
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="attachments" class="col-sm-2 reqd control-label " >Attachments</label>
+              <div class="col-sm-3">
+                <input type="checkbox"  ng-model="sif.w9"> W9
+                <input type="checkbox"  ng-model="sif.w8ben"> W8-BEN
+              </div>
+
+              <label  class="col-sm-2 control-label"></label>
+              <div class="col-sm-3">
+                <input type="checkbox" ng-checked="false" ng-model="sif.federalReportable"> Federal Reportable
+              </div>          
+            </div>
+
+            <div class="form-group">
+              <label for="IncomeTaxType" class="col-sm-2 reqd control-label " >Income Tax Type</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control"  placeholder="Income Tax Type"   ng-model="sif.taxReportingType">
+              </div>
+
+
+                <label for="ReportingSIte" class="col-sm-2 control-label">Tax Reporting Site</label>
+                <div class="col-sm-3">
+                   <input type="text" class="form-control"  placeholder="Reporting Site"   ng-model="sif.taxReportingSite">
+                </div>
+            </div>        
+
+
+        </div>
+      </div>  
+      
+      <div class="panel panel-primary">
+        <div class="panel-heading">Payment Details/Invoice Management</div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label " >Payment Method</label>
+              <div class="col-sm-3">
+                 <select  class="form-control"  ng-model="sif.paymentMethod">
+                  <option>Supplier</option>
+                  <option>Customer Refund</option>
+                  <option>Rent</option>
+                  <option>1099</option>
+                  <option>Employee</option>
+                </select>
+              </div>
+              <label for="remitEmail" class="col-sm-2 control-label">AP Remit Email</label>
+              <div class="col-sm-3">
+                <input type="email" class="form-control"  placeholder="Remit Email"  ng-model="sif.remitEmail">
+              </div>
+            </div>        
+            <div class="form-group">
+              <label class="col-sm-2 control-label " >Invoice Currency</label>
+              <div class="col-sm-3">
+                 <select class="form-control"  ng-model="sif.invoiceCurrency">
+                  <option ng-repeat="c in currencies" value={{c.CURRENCY_CODE}}>{{c.CURRENCY_CODE}} - {{c.NAME}}</option>
+                </select>
+              </div>
+              <label class="col-sm-2 control-label " >Payment Currency</label>
+              <div class="col-sm-3">
+                 <select class="form-control"  ng-model="sif.paymentCurrency">
+                  <option ng-repeat="c in currencies" value={{c.CURRENCY_CODE}}>{{c.CURRENCY_CODE}} - {{c.NAME}}</option>
+                </select>
+              </div>
+            </div>   
+            <div class="form-group">
+              <label class="col-sm-2 control-label " >Pay Group</label>
+              <div class="col-sm-3">
+                  <input type="text" class="form-control"  placeholder="Pay Group"  ng-model="sif.payGroup">
+              </div>
+              <label class="col-sm-2 control-label " >Delivery Channel</label>
+              <div class="col-sm-3">
+                 <select class="form-control"  ng-model="sif.deliveryChannel">
+                  <option>Supplier</option>
+                  <option>Customer Refund</option>
+                  <option>Rent</option>
+                  <option>1099</option>
+                  <option>Employee</option>
+                </select>
+              </div>
+            </div>           
+            <div class="form-group">
+              <label class="col-sm-2 control-label " >Paymode X Account ID</label>
+              <div class="col-sm-3">
+                  <input type="text" class="form-control"  placeholder="PayMode ID"  ng-model="sif.payModeID">
+              </div>
+            </div>           
+        </div>
+      </div>
+
+
+      <div class="panel panel-primary">
+      <div class="panel-heading">Banking Information</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="SWIFT" class="col-sm-2 reqd control-label " >SWIFT/BIC</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="SWIFT/BIC"   ng-model="sif.swift">
+            </div>
+            <label for="IBAN" class="col-sm-2 reqd control-label " >IBAN</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="IBAN"   ng-model="sif.iban">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bankName" class="col-sm-2 reqd control-label " >Bank Name</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Bank Name"   ng-model="sif.bankName">
+            </div>
+            <label for="branchName" class="col-sm-2 reqd control-label " >Branch Name</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Branch Name"   ng-model="sif.branchName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Beneficiary" class="col-sm-2 reqd control-label " >Beneficiary</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="UK, Europe -Beneficiary"   ng-model="sif.beneficiary">
+            </div>
+            <label for="abaNumber" class="col-sm-2 reqd control-label " >ABA Number</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="ABA Number (US ACH Only)"   ng-model="sif.abaNumber">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="AccountNumber" class="col-sm-2 reqd control-label " >Account Number</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Account Number"   ng-model="sif.accountNumber">
+            </div>
+            <label for="sortCode" class="col-sm-2 reqd control-label " >Sort Code</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="UK, Europe Branch#"   ng-model="sif.sortCode">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="BankCode" class="col-sm-2 reqd control-label " >Bank Code</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Bank Code"   ng-model="sif.bankCode">
+            </div>
+            <label for="InternationalPayments" class="col-sm-2 control-label " ></label>
+            <div class="col-sm-3">
+              <input type="checkbox" ng-checked="false" ng-model="sif.intlPayments"> Allow International Payments
+            </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-3">
+            <button type="submit" class="btn btn-primary pull-left" ng-click="goHome()">Cancel</button>
+            <button  type="submit" class="btn btn-primary pull-right" ng-click="save()">Approve</button>    
+        </div>
+      </div>  
+
+    </form>
+  </div>
+
+
+
+  </div>
+</div>

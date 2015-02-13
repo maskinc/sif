@@ -1,0 +1,17 @@
+<h1> Admin Page</h1>
+
+
+<table class="table table-hover col-sm-6 " >
+   <thead>
+      <td> User Name</td>
+      <td> Role</td>
+      <td> Save</td>
+   </thead>
+   <tbody>
+   <tr ng-repeat="u in users">
+      <td> {{u.email}}</td>
+      <td> {{u.role}}</td>
+      <td> Edit </td>
+   </tr>
+</tbody>
+</table>		

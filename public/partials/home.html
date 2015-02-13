@@ -1,0 +1,148 @@
+<!--<div class="form-group">
+    <div class="col-sm-offset-8 col-sm-2">
+      <button type="submit" class="btn btn-primary pull-right" ng-click="launchCreate()">Create New</button>
+    </div>
+
+</div>
+
+
+{{currentUser}}
+
+
+<table class="table table-hover col-sm-6 " >
+   <thead>
+      <td> Supplier Name</td>
+      <td> Supplier Type</td>
+      <td> Status</td>
+      <td> Action</td>
+   </thead>
+   <tbody>
+   <tr ng-repeat="p in suppliers |filter:1">
+      <td> {{p.supplier_name}}</td>
+      <td> {{p.supplier_type}}</td>
+      <td> {{p.status}} </td>
+      <td ng-show="currentUser.role=='User'">  
+        <a ng-show="p.status=='Saved'" href='#/{{p._id}}'>Edit</a>
+      </td>
+      <td ng-show="currentUser.role!='User'"> <a ng-show="p.status!='Saved'" href='#/{{p._id}}'> Review Edit</a></td>
+   </tr>
+</tbody>
+</table>
+-->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="/#/home">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="/#/home">Reports</a></li>
+            <li><a href="/#/home">Analytics</a></li>
+            <li><a href="/#/home">Export</a></li>
+          </ul>
+          <!--
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>-->
+          </div>
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Quick Links</h1>
+
+          <div class="row placeholders">
+            <!--
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>-->
+            <div class="form-group">
+              <div class="col-xs-6 col-sm-11 placeholder">
+                <button type="submit" class="btn btn-primary pull-right" ng-click="launchCreate()">Create New</button>
+              </div>
+            </div>
+          </div>
+
+          <h2 ng-show="currentUser.role!='User'" class="sub-header">Items for Your review</h2>
+          <div ng-show="currentUser.role!='User'" class="alert alert-info" role="alert" ng-repeat="p in suppliers |filter:homeFilter">
+
+            <a href="#/{{p._id}}" class="alert-link">Supplier Request for {{p.supplier_name}} requires your review</a>
+          </div>
+
+
+         
+        <div ng-show="currentUser.role=='User'">
+          <h2 class="sub-header">Suppliers Status</h2>
+          <div class="table-responsive">
+          <label> Sort By</label>
+          <select ng-model="sortBy"class="circle">
+            <option value="supplier_name"> Supplier Name</option>
+            <option value="supplier_type"> Supplier Type</option>
+            <option value="status"> Status</option>
+          </select>
+
+          <label> Search</label>
+          <input type="text" class="circle" ng-model="search" placeholder="Search anything...">
+
+
+
+
+          <table class="table table-striped" >
+               <thead>
+                  <td> <b> Supplier Name </b> </td>
+                  <td> <b> Supplier Type </b> </td>
+                  <td> <b> Status </b> </td>
+                  <td> <b> Action </b> </td>
+               </thead>
+               <tbody>
+                 <!-- 
+                <div  ng-switch on="currentUser.role">
+                    <tr ng-switch-when="AP" ng-repeat="p in suppliers |filter:'AP Rev' | orderBy:sortBy" >
+                    <tr ng-switch-when="PO" ng-repeat="p in suppliers |filter:'PO Rev' | orderBy:sortBy" >
+                    <tr ng-switch-when="DQM" ng-repeat="p in suppliers |filter:'DQM Rev' | orderBy:sortBy" >
+                </div>-->                
+               <tr ng-repeat="p in suppliers |filter:search| orderBy:sortBy" >
+                  <td> {{p.supplier_name}}</td>
+                  <td> {{p.supplier_type}}</td>
+                  <td> {{p.status}} </td>
+                  <td ng-show="currentUser.role=='User'">  
+                    <a ng-show="p.status=='Saved'" href='#/{{p._id}}'><span class="glyphicon glyphicon glyphicon-pencil"></span></a>
+                    <a ng-show="p.status!='Saved'" href='#/suppliers/view/{{p._id}}'><span class="glyphicon glyphicon glyphicon-th">
+                    </span></a>                    
+                  </td>
+                  <td ng-show="currentUser.role!='User'"> <a ng-show="p.status!='Saved'" href='#/{{p._id}}'> <span class="glyphicon glyphicon glyphicon-edit">
+                    </span></a>
+                  </td>
+               </tr>
+            </tbody>
+            </table>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
