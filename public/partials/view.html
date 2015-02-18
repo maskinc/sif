@@ -10,7 +10,227 @@
 	    </div>
 
 	    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
-	    <label> Name :  </label> {{sif}}
+    <form  class="form-horizontal" role="form" method="post" >
+      <div class="panel panel-primary">
+        <div class="panel-heading">Supplier Information</div>
+        <div class="panel-body">
+
+          <div class="form-group">
+          <label for="supplierName" class="col-sm-2 reqd control-label " required>Supplier Name</label>
+          <div class="col-sm-3">
+            <label class="label label-info">{{sif.supplier_name}}</label>
+          </div>
+
+          <label for="supplierType" class="col-sm-2 control-label">Supplier Type</label>
+          <div class="col-sm-3">
+            <select id="supplierType" name="supplierType" class="form-control" name="supplierType" ng-model="sif.supplier_type">
+              <option>Supplier</option>
+              <option>Customer Refund</option>
+              <option>Rent</option>
+              <option>1099</option>
+              <option>Employee</option>
+            </select>
+          </div>
+          </div>
+
+
+        <div class="form-group required">
+          <label for="supplierSource" class="col-sm-2 control-label">Validated Supplier Name & Source</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="Source" ng-model="sif.validated_source" required>
+          </div>
+
+          <label for="legalEntity" class="col-sm-2 control-label">Legal Entity (DQM)</label>
+          <div class="col-sm-3">
+            <select ng-model="sif.legal_entity" class="form-control">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="webSite" class="col-sm-2 control-label">Web Site</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="URL" ng-model="sif.web_site" required>
+          </div>
+
+          <label for="annualSpend" class="col-sm-2 control-label">Expected Annual Spend</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="100.00" ng-model="sif.exp_spend" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="altSupplierName" class="col-sm-2 control-label">Alternate Name</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="Altername Name" ng-model="sif.alternate_name" required>
+          </div>
+
+          <label for="taxID" class="col-sm-2 control-label">Taxpayer ID/SSN</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="Tax ID/SSN" ng-model="sif.tax_id" required>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="supplierNo" class="col-sm-2 control-label">Supplier No.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Supplier Number" ng-model="sif.supplier_no">
+            </div>
+
+          <label for="companyID" class="col-sm-2 control-label">Company Registration#</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" ng-model="sif.com_registration" placeholder="Registration#" required>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <label for="payTerms" class="col-sm-2 control-label">Payment Terms</label>
+        <div class="col-sm-3">
+          <select  ng-model="sif.payment_terms" class="form-control" placeholder="Payment Terms">
+            <option ng-repeat="term in pterms">{{term.NAME}}</option>
+          </select>
+        </div>
+
+        <label for="purchaseType" class="col-sm-2 control-label">Buying Commodity</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="What are you buying?" ng-model="sif.buy_commodity">
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reselling" class="col-sm-2 control-label">Reselling to Customers</label>
+        <div class="col-sm-3">
+          <select ng-model="sif.reselling" class="form-control">
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+
+
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">Address Book</div>
+      <div class="panel-body">
+
+        <div class="form-group">
+          <label for="country" class="col-sm-2 control-label">Country</label>
+          <div class="col-sm-3">
+            <select ng-model="sif.address_book.country" class="form-control">
+              <option>US</option>
+              <option>UK</option>
+              <option>Germany</option>
+              <option>Singapore</option>
+              <option>Australia</option>
+            </select>
+          </div>
+          <label for="addressName" class="col-sm-2 control-label">Address Name</label>
+          <div class="col-sm-3">
+           <input type="text" class="form-control"  placeholder="City: i.e. Bedford" ng-model="sif.address_book.address_name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address1" class="col-sm-2 control-label">Address Line1</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="Address" ng-model="sif.address_book.add_line1" required>
+          </div>
+
+          <label for="address2" class="col-sm-2 control-label">Address Line2</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Address" ng-model="sif.address_book.add_line2">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address3" class="col-sm-2 control-label">Address Line3</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="Address" ng-model="sif.address_book.add_line3">
+          </div>
+          <label for="city" class="col-sm-2 control-label">City</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="City" ng-model="sif.address_book.city">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="county" class="col-sm-2 control-label">County</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control"  placeholder="County" ng-model="sif.address_book.county">
+          </div>
+
+          <label for="state" class="col-sm-2 control-label">State</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="State" ng-model="sif.address_book.state">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="zip" class="col-sm-2 control-label">Postal Code</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Postal Code" ng-model="sif.address_book.postal_code" required>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">Contact Directory</div>
+        <div class="panel-body">
+
+          <div class="form-group required">
+            <label for="poFName" class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="First Name" ng-model="sif.contact.first_name" required="required">
+            </div>
+            <label for="poLName" class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Last Name" ng-model="sif.contact.last_name" required>
+            </div>
+          </div>
+
+          <div class="form-group required">
+            <label for="poPhone" class="col-sm-2 control-label">Phone</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control"  placeholder="Phone" ng-model="sif.contact.Phone">
+            </div>
+            <label for="poEmail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" placeholder="Email" ng-model="sif.contact.email">
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="poFax" class="col-sm-2 control-label">Fax</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="poFax" placeholder="Fax" ng-model="sif.contact.fax">
+            </div>
+            <label for="poTitle" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-3 required">
+              <input type="text" class="form-control" id="poTitle" placeholder="Title" ng-model="sif.contact.title">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="poDept" class="col-sm-2 control-label">Department</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="poDept" placeholder="Department" ng-model="sif.contact.department">
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+</form>			    
 
 		</div>
 	</div>

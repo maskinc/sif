@@ -95,6 +95,7 @@
 
 
          
+
         <div ng-show="currentUser.role=='User'">
           <h2 class="sub-header">Suppliers Status</h2>
           <div class="table-responsive">
@@ -125,7 +126,7 @@
                     <tr ng-switch-when="PO" ng-repeat="p in suppliers |filter:'PO Rev' | orderBy:sortBy" >
                     <tr ng-switch-when="DQM" ng-repeat="p in suppliers |filter:'DQM Rev' | orderBy:sortBy" >
                 </div>-->                
-               <tr ng-repeat="p in suppliers |filter:search| orderBy:sortBy" >
+               <tr ng-repeat="p in suppliers |filter:currentUser.email| orderBy:sortBy" >
                   <td> {{p.supplier_name}}</td>
                   <td> {{p.supplier_type}}</td>
                   <td> {{p.status}} </td>
