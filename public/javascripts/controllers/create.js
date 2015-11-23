@@ -48,6 +48,7 @@
                 $scope.suppliers.push(supplier);
             });
             console.log('saved');
+            console.log("ID STored" + supplier._id);
             $location.url('/home');
         } else{
             Suppliers.update({id: $routeParams.id}, $scope.sif, function(){});
